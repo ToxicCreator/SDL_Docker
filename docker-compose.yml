@@ -1,0 +1,11 @@
+version: '3'
+
+name: 'sdl_docker'
+services:
+  web:
+    container_name: 'web'
+    image: nginx:1.11-alpine
+    build: .
+    ports:
+      - 80:80
+    restart: always
