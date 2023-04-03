@@ -8,4 +8,24 @@ services:
     build: .
     ports:
       - 80:80
-    restart: always
+    depends_on:
+      - db
+
+  db:
+    container_name: 'db'
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: database
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  web-data:
+  db-data:
+
+networks:
+  mynetwork:
